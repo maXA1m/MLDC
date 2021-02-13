@@ -23,22 +23,22 @@ namespace MiddleLevelDevCourse
 
         private static long GetMaxSizeOfSingleBlockInHeap()
         {
-            var maxBlockLength = int.MaxValue;
-            var wasMaxBlockFound = false;
-            while (!wasMaxBlockFound)
+            var maxBlockSize = int.MaxValue;
+            var isMaxBlockFound = false;
+            while (!isMaxBlockFound)
             {
                 try
                 {
-                    GC.AllocateArray<byte>(maxBlockLength);
-                    wasMaxBlockFound = true;
+                    GC.AllocateArray<byte>(maxBlockSize);
+                    isMaxBlockFound = true;
                 }
                 catch
                 {
-                    maxBlockLength--;
+                    maxBlockSize--;
                 }
             }
 
-            return maxBlockLength;
+            return maxBlockSize;
         }
 
         private static long GetAmountOfRAM() => 8589934592;
