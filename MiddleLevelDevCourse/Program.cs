@@ -9,6 +9,7 @@ namespace MiddleLevelDevCourse
             try
             {
                 FirstLesson.Run();
+                SecondLesson.Run();
             }
             catch(Exception ex)
             {
