@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MiddleLevelDevCourse
+namespace MiddleLevelDevCourse.SecondLesson
 {
     public class CustomCollection<T> where T : class
     {

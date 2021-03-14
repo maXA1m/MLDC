@@ -1,8 +1,8 @@
-﻿namespace MiddleLevelDevCourse
+﻿namespace MiddleLevelDevCourse.SecondLesson
 {
-    public static class SecondLesson
+    public class SecondLesson : ILesson
     {
-        public static void Run()
+        public void Run()
         {
             System.Console.WriteLine("Hash = index");
             TestCollection(new CustomCollection<SimpleObject>(HashFunctions.NoHash, 100_000));
@@ -30,12 +30,5 @@
 
             System.Console.WriteLine($"Last item: {collection[(collection.InitialCapacity - 1) * 10]}");
         }
-    }
-
-    public class SimpleObject
-    {
-        public int Number { get; set; }
-
-        public override string ToString() => Number.ToString();
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace MiddleLevelDevCourse
+﻿namespace MiddleLevelDevCourse.SecondLesson
 {
     public static class HashFunctions
     {

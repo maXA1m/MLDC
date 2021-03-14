@@ -5,4 +5,18 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="ThirdLesson\" />
+    <Folder Include="SecondLesson\" />
+    <Folder Include="FirstLesson\" />
+    <Folder Include="ThirdLesson\Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="ThirdLesson\Data\Barcelona1.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ThirdLesson\Data\barcelona2.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

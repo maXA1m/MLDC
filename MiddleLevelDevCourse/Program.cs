@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MiddleLevelDevCourse
 {
@@ -8,8 +9,12 @@ namespace MiddleLevelDevCourse
         {
             try
             {
-                FirstLesson.Run();
-                SecondLesson.Run();
+                new List<ILesson>
+                {
+                    //new FirstLesson.FirstLesson(),
+                    //new SecondLesson.SecondLesson(),
+                    new ThirdLesson.ThirdLesson()
+                }.ForEach(l => l.Run());
             }
             catch(Exception ex)
             {

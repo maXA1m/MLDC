@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MiddleLevelDevCourse
+namespace MiddleLevelDevCourse.FirstLesson
 {
-    public static class FirstLesson
+    public class FirstLesson : ILesson
     {
         /* 
          * Result (MacBook Air 2020 i5 8GB):
@@ -11,9 +11,9 @@ namespace MiddleLevelDevCourse
          * Max size of single block available in heap to allocate: 2,147,483,591 bytes
          * Amount of available memory to allocate after allocating the block: 2,147,712,064 bytes
          * Compare with physically available memory: ~8,589,934,592 bytes
-        */
+         */
 
-        public static void Run()
+        public void Run()
         {
             Console.WriteLine($"Amount of available memory to allocate: {GetAmountOfAvailableMemory():n0} bytes");
 
