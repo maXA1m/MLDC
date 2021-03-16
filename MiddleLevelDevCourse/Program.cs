@@ -11,9 +11,10 @@ namespace MiddleLevelDevCourse
             {
                 new List<ILesson>
                 {
-                    //new FirstLesson.FirstLesson(),
-                    //new SecondLesson.SecondLesson(),
-                    new ThirdLesson.ThirdLesson()
+                    //new MaxBlockToAllocateLesson.MaxBlockToAllocateLesson(),
+                    //new CustomCollectionLesson.CustomCollectionLesson(),
+                    //new UnionLesson.UnionLesson(),
+                    new TransactionsLesson.TransactionsLesson()
                 }.ForEach(l => l.Run());
             }
             catch(Exception ex)

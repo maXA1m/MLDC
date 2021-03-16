@@ -6,10 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ThirdLesson\" />
-    <Folder Include="SecondLesson\" />
-    <Folder Include="FirstLesson\" />
-    <Folder Include="ThirdLesson\Data\" />
+    <Folder Include="UnionLesson\" />
+    <Folder Include="CustomCollectionLesson\" />
+    <Folder Include="MaxBlockToAllocateLesson\" />
+    <Folder Include="UnionLesson\Data\" />
+    <Folder Include="TransactionsLesson\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="ThirdLesson\Data\Barcelona1.csv">
