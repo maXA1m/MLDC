@@ -1,17 +1,21 @@
-﻿namespace MiddleLevelDevCourse.TransactionsLesson
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace MiddleLevelDevCourse.TransactionsLesson
 {
     public class TransactionsLesson : ILesson
     {
-        // Code from the lesson is wrong, because it creates different transactions at the same time.
-        // Maybe remove should be applayed before add.
-
         public void Run()
         {
             var collection = new TransactionalDictionary<string, int>();
 
             CheckCollection(collection);
-            CheckSimpleTransaction(collection);
             CheckTransaction(collection);
+
+            // Code from the lesson is wrong, because it creates different transactions at the same time.
+            // Remove can be applayed before add (second transaction before first).
+            CheckDifferentThreadsTransaction(collection).Wait();
         }
 
         private static void CheckCollection(TransactionalDictionary<string, int> collection)
@@ -19,27 +23,8 @@
             collection.Add("a", 10504);
             collection.Add("b", 228);
 
-            System.Console.WriteLine(collection.Get("a"));
-            System.Console.WriteLine(collection.Get("b"));
-
             collection.Remove("a");
             collection.Remove("b");
-
-            System.Console.WriteLine(collection.Count);
-        }
-
-        private static void CheckSimpleTransaction(TransactionalDictionary<string, int> collection)
-        {
-            var tran = collection.BeginTransaction();
-
-            collection.Add("c", 666);
-            collection.Add("d", 555);
-
-            collection.Commit(tran);
-
-            System.Console.WriteLine(collection.Get("c"));
-            System.Console.WriteLine(collection.Get("d"));
-            System.Console.WriteLine(collection.Count);
         }
 
         private static void CheckTransaction(TransactionalDictionary<string, int> collection)
@@ -52,8 +37,42 @@
 
             collection.Commit(tran);
 
-            System.Console.WriteLine(collection.Get("f"));
-            System.Console.WriteLine(collection.Count);
+            tran = collection.BeginTransaction();
+
+            collection.Remove("f");
+
+            collection.Commit(tran);
+        }
+
+        private static async Task CheckDifferentThreadsTransaction(TransactionalDictionary<string, int> collection)
+        {
+            await Task.Run(() =>
+            {
+                var tran = collection.BeginTransaction();
+                Console.WriteLine("Add transaction was created");
+
+                Console.WriteLine("Start adding 'a'");
+
+                collection.Add("a", 10500);
+                collection.Commit(tran);
+
+                Console.WriteLine("Add transaction was commited.");
+            });
+
+            await Task.Run(() =>
+            {
+                var tran = collection.BeginTransaction();
+                Console.WriteLine("Remove transaction was created");
+
+                Thread.Sleep(1000);
+
+                Console.WriteLine("Start removing 'a'");
+
+                collection.Remove("a");
+                collection.Commit(tran);
+
+                Console.WriteLine("Remove transaction was commited.");
+            });
         }
     }
 }

@@ -11,9 +11,9 @@ namespace MiddleLevelDevCourse
             {
                 new List<ILesson>
                 {
-                    new MaxBlockToAllocateLesson.MaxBlockToAllocateLesson(),
-                    new CustomCollectionLesson.CustomCollectionLesson(),
-                    new UnionLesson.UnionLesson(),
+                    //new MaxBlockToAllocateLesson.MaxBlockToAllocateLesson(),
+                    //new CustomCollectionLesson.CustomCollectionLesson(),
+                    //new UnionLesson.UnionLesson(),
                     new TransactionsLesson.TransactionsLesson()
                 }.ForEach(l => l.Run());
             }

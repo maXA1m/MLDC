@@ -6,10 +6,16 @@ namespace MiddleLevelDevCourse.TransactionsLesson
 {
     public class TransactionalDictionary<TKey, TValue>
     {
+        #region Fields
+
         private readonly object _itemsLock = new();
 
         private readonly Dictionary<TKey, TValue> _items;
         private readonly Dictionary<DateTime, Transaction<TKey, TValue>> _transactions = new();
+
+        #endregion
+
+        #region .ctors
 
         public TransactionalDictionary() : this(new Dictionary<TKey, TValue>())
         {
@@ -20,9 +26,17 @@ namespace MiddleLevelDevCourse.TransactionsLesson
             _items = items;
         }
 
+        #endregion
+
+        #region Properties
+
         public bool HasOpenTransactions => _transactions.Count > 0;
 
         public int Count => _items.Count;
+
+        #endregion
+
+        #region Collection Methods
 
         public void Add(TKey key, TValue value)
         {
@@ -64,6 +78,10 @@ namespace MiddleLevelDevCourse.TransactionsLesson
             }
         }
 
+        #endregion
+
+        #region Transaction Methods
+
         /// <summary>
         /// Begins new transaction.
         /// </summary>
@@ -82,7 +100,7 @@ namespace MiddleLevelDevCourse.TransactionsLesson
         /// <param name="key">Transaction key.</param>
         public void Commit(DateTime key)
         {
-            //TODO: transactions sequence, TIME, what to apply first?
+            //TODO: transactions sequence, TIME, what to apply first, maybe delay and wait for prev transactions?
             if(_transactions.TryGetValue(key, out var transaction))
             {
                 ApplyChanges(transaction);
@@ -124,5 +142,7 @@ namespace MiddleLevelDevCourse.TransactionsLesson
                 }
             }
         }
+
+        #endregion
     }
 }
