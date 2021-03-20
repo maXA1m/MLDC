@@ -40,6 +40,11 @@ namespace MiddleLevelDevCourse.TransactionsLesson
 
         public void Add(TKey key, TValue value)
         {
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
             if (!HasOpenTransactions)
             {
                 lock (_itemsLock)
@@ -55,6 +60,11 @@ namespace MiddleLevelDevCourse.TransactionsLesson
 
         public void Remove(TKey key)
         {
+            if(key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
             if (!HasOpenTransactions)
             {
                 lock (_itemsLock)
@@ -133,7 +143,14 @@ namespace MiddleLevelDevCourse.TransactionsLesson
             {
                 foreach(var i in transaction.AddItems)
                 {
-                    _items.Add(i.Key, i.Value);
+                    try
+                    {
+                        _items.Add(i.Key, i.Value);
+                    }
+                    catch (ArgumentException)
+                    {
+                        // Key already exists
+                    }
                 }
 
                 foreach (var key in transaction.RemoveItems)
