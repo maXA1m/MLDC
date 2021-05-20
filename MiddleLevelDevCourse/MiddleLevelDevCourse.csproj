@@ -12,6 +12,7 @@
     <Folder Include="UnionLesson\Data\" />
     <Folder Include="TransactionsLesson\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Playground\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="ThirdLesson\Data\Barcelona1.csv">

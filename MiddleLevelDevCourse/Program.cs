@@ -14,7 +14,8 @@ namespace MiddleLevelDevCourse
                     //new MaxBlockToAllocateLesson.MaxBlockToAllocateLesson(),
                     //new CustomCollectionLesson.CustomCollectionLesson(),
                     //new UnionLesson.UnionLesson(),
-                    new TransactionsLesson.TransactionsLesson()
+                    //new TransactionsLesson.TransactionsLesson(),
+                    new Playground.Playground(Playground.Playgrounds.Common | Playground.Playgrounds.Reflection)
                 }.ForEach(l => l.Run());
             }
             catch(Exception ex)
